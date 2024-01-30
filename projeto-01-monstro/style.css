@@ -122,14 +122,13 @@ html {
 .logs ul li {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
     margin: 4px 0px;
     padding: 3px 0px;
     font-weight: 600;
     font-size: 1.1rem;
     text-transform: uppercase;
     border-radius: 3px;
-
     color: #FFF;
 }
 

@@ -13,15 +13,16 @@
             <div class="score">
                 <h1>Jogador</h1>
                 <div class="life-bar" >
-                    <div class="life" :style="{ width: lifeWidthPlayer, backgroundColor: lifePlayer < 20 ? 'red' : 'green'}"></div>
-
+                    <div class="life" :style="{ width: lifePlayer + '%', backgroundColor: lifePlayer < 20 ? 'red' : 'green'}"></div>
+                    <span>{{ lifePlayer }}</span>
                 </div>
                 <div></div>
             </div>
             <div class="score">
                 <h1>Monstro</h1>
                 <div class="life-bar">
-                    <div class="life" :style="{ width: lifeWidthMonster, backgroundColor: lifeMonster < 20 ? 'red' : 'green'}"></div>
+                    <div class="life" :style="{ width: lifeMonster + '%', backgroundColor: lifeMonster < 20 ? 'red' : 'green'}"></div>
+                    <span>{{ lifeMonster }}</span>
                 </div>
                 <div></div>
             </div>
@@ -35,19 +36,15 @@
             <template v-if="!painel">
                 <button class="btn attack" @click="callFunctions">Ataque</button>
                 <button class="btn especial-attack" @click="callEspecialAttacks">Ataque Especial</button>
-                <button class="btn heal">Curar</button>
+                <button class="btn heal" @click="healing">Curar</button>
                 <button class="btn give-up" @click="giveUp">Desistir</button>
             </template>
             <button class="btn new-game" @click="painel = !painel" v-if="painel">Iniciar Jogo</button>
         </div>
         <div class="panel logs">
             <ul>
-                <li v-for="(combinedItem, index) in combinedList" :key="index">
-                    <span class="historyPlayer">Monstro atingiu jogador com {{ combinedItem.player }}</span>
-                    <hr>
-                    <span class="historyMonster">Jogador atingiu monstro com {{ combinedItem.monster }}</span>
-                    <hr>
-                    
+                <li v-for="log in logs" :class="log.cls">
+                   {{ log.text }}
                 </li>
             </ul>
         </div>
